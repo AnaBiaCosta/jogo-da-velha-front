@@ -1,0 +1,284 @@
+/* CORPO - GERAL*/
+body{
+    font-family: 'Raleway', sans-serif;
+    color: white
+}
+
+.bg-body{
+    background-color: black;
+}
+
+
+
+
+/* ESPAÇAMENTO */
+
+.mr{
+    margin-right: 10%
+}
+
+.ml{
+    margin-left: 10%
+}
+
+.margin{
+    margin-left: 15%
+}
+
+p{
+    margin-bottom: 5%
+}
+
+.pd{
+    padding-bottom: 5%;
+}
+
+.pd-como-jogar{
+    padding-bottom: 2%;
+}
+
+section {
+    margin-bottom: 10%
+}
+
+
+.p-text{
+    margin-bottom: 10%
+}
+
+
+
+
+/* TÍTULOS */
+h1{
+    font-size: 70px;
+    margin-bottom: 2%;
+    margin-top: 10%;
+    text-align: center;
+    text-shadow: 2px 2px 2px #FFE2DF
+}
+
+h2{
+    text-align: center;
+    font-size: 35px;
+    margin-top: 10%;
+    font-weight: bold;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5%
+}
+
+.sub-title{
+    margin-bottom: 5%;
+}
+
+.rules-title{
+    text-align: center;
+    padding-bottom: 2%
+}
+
+.tc{
+    text-align: center
+}
+
+
+
+
+/* TEXTOS */
+.principal-text{
+    width: 100%;
+    text-align: center
+}
+
+.text{
+    margin-right: 4%;
+    text-align: justify;
+    width: 60%
+}
+
+
+
+
+/* CONTAINERS */
+.df{
+    display: flex;
+    justify-content: space-around
+}
+
+main{
+    display: flex
+}
+
+.container{
+    border-bottom: 1px solid #FFE2DF;
+    padding-bottom: 10%;
+}
+
+.sub-container{
+    display: flex;
+}
+
+
+
+
+/* NAVBAR */
+nav{
+    border-top: 1px solid #FFE2DF;
+    border-bottom: 1px solid #FFE2DF;
+    color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.nav-brand{
+    width: 30%;
+    margin-left: 35%
+}
+
+ul{
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    justify-content: center
+}
+
+li{
+    float: left;
+    margin-right: 2%
+}
+
+li a{
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: white;
+}
+
+li a:hover{
+    color:#E8707B;
+}
+
+
+
+
+/* MAIN */
+.btn-principal{
+    display: flex;
+    justify-content: center;
+}
+   
+.btn{
+    border-radius: 7px;
+    color:black;
+    padding: 10px;
+    border: none;
+    background-image: linear-gradient(to right, #FFE2DF , #E8707B);  
+}
+
+.box{
+    width: 25%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.box-rules{
+    border: 2px solid #FFE2DF;
+    border-radius: 15px;
+    width: 45%;
+    padding: 2%;
+    box-sizing: border-box
+}
+
+.rules{
+    display: flex;
+    justify-content: space-around;
+}
+
+.rules-item{
+    text-align: center
+}
+
+.como-jogar-box{
+    display: flex;
+}
+
+
+
+
+
+
+/* IMAGENS */
+.img-icon{
+    padding-top: 25%; 
+    padding-right: 20%;
+    padding-left: 20%;
+    padding-bottom: 25%;
+}
+
+.img-box{
+    display: flex;
+    justify-content: center;
+}
+
+.img-history{
+    width: 50%;
+    display: flex;
+    justify-content: center
+}
+
+.bg_video{
+	right: 0; 
+	bottom: 0;
+	min-width: 100%; 
+	min-height: 100%;
+	background: no-repeat;
+}
+
+
+/* FOOTER */
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.copyright{
+    text-align: center
+}
+
+footer{
+    border-top: 2px solid #FFE2DF;
+    width: 100%;
+    padding: 2%
+}
+
+.img-footer{
+    width: 150px;
+    padding-top: 2%;
+    padding-bottom: 2%
+}
+
+.icon-footer{
+    margin-right: 5%;
+}
+
+.icons-container{
+    width: 20%;
+    align-items: center; 
+}
+
+
+
+
+
+/* 
+#FFE2DF
+#FFD6DC
+#F5C1C7
+#E8A0AB
+#E8707B 
+*/

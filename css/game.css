@@ -1,0 +1,190 @@
+/* CORPO - GERAL*/
+body{
+    font-family: 'Raleway', sans-serif;
+    color: white
+}
+
+.bg-body{
+    background-color: black;
+}
+
+.mr{
+    margin-right: 10%
+}
+
+.ml{
+    margin-left: 10%
+}
+
+section{
+    margin-top: 10%;
+    margin-bottom: 10%
+}
+
+
+
+
+/* NAVBAR */
+nav{
+    border-top: 1px solid #FFE2DF;
+    border-bottom: 1px solid #FFE2DF;
+    color: white;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.nav-brand{
+    width: 30%;
+    margin-left: 35%
+}
+
+ul{
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    justify-content: center
+}
+
+li{
+    float: left;
+    margin-right: 2%
+}
+
+li a{
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    color: white;
+}
+
+li a:hover{
+    color:#E8707B;
+}
+
+
+
+
+/* TÍTULOS */
+h1{
+    font-size: 70px;
+    margin-bottom: 5%;
+    text-shadow: 2px 2px 2px #FFE2DF;
+    text-align: center
+}
+
+h2{
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+h3{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5%
+}
+
+
+
+
+/* JOGO */
+ .box{
+     display: flex;
+     justify-content: center
+ }
+
+ .box-item{
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.bl1{
+    border-left: 2px solid #FFE2DF;
+    border-right: 2px solid #FFE2DF;
+}
+
+.bl2{
+    border-top: 2px solid #FFE2DF;
+    border-bottom: 2px solid #FFE2DF;
+}
+
+
+ .b-total{
+     border: 2px solid #FFE2DF
+ }
+
+ img{
+     pointer-events: none
+ }
+
+
+ .restart{
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+
+/* POPUP */
+.pop-up{
+    width: 50%;
+    height: 10%;
+    padding: 5%;
+    border: 2px solid #E8707B;
+    border-radius: 40px;
+    background: #E8707B;
+    display: none;
+    margin-left: 300px;
+    /* OLHA O ERRO AI */
+}
+
+.img-pop-up{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2%
+}
+
+
+
+
+ /* FOOTER */
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.copyright{
+    text-align: center
+}
+
+footer{
+    border-top: 2px solid #FFE2DF;
+    width: 100%;
+    padding: 2%
+}
+
+.img-footer{
+    width: 150px;
+    padding-top: 2%;
+    padding-bottom: 2%
+}
+
+.icon-footer{
+    margin-right: 5%;
+}
+
+.icons-container{
+    width: 20%;
+    align-items: center; 
+}

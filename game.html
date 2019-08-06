@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.IA GAMES</title>
+    <link rel="stylesheet" href="css/style-padrao.css">
+    <link rel="icon" href="img/logo-icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+
+
+<body class="bg-body mr ml">
+    <header>
+        <a href="index.html"><img src="img/logo-2.png" alt="Logo b.i games" class="nav-brand"></a>
+
+        <nav>
+            <ul>
+                <li><a href="index.html#jogo_da_velha">JOGO DA VELHA</a></li>
+                <li><a href="index.html#historia">HISTÓRIA</a></li>
+                <li><a href="index.html#regras">REGRAS</a></li>
+                <li><a href="index.html#como_jogar">COMO JOGAR</a></li>
+                <li><a href="index.html" onclick="sair()">SAIR</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+
+
+
+    <main>
+        <section>
+            <h1>JOGO DA VELHA</h1>
+
+            <div class="pop-up">
+                <div class="img-pop-up"><img src="/img/trofeu.png" alt="trofeu" class="img-pop"></div>
+                <h1 class="g"></h1>
+    
+                <div class="restart">RECOMEÇAR</div>
+            </div>
+
+
+
+            
+            <div class="box-container">
+
+                <div class="box">
+                    <span class="box-item"><img></span>
+                    <span class="box-item bl1"><img></span>
+                    <span class="box-item"><img></span>
+                </div>
+
+                <div class="box">
+                    <span class="box-item bl2"><img></span>
+                    <span class="b-total box-item"><img></span>
+                    <span class="box-item bl2"><img></span>
+                </div>
+
+                <div class="box">
+                    <span class="box-item"><img></span>
+                    <span class="box-item bl1"><img></span>
+                    <span class="box-item"><img></span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div><img src="img/footer.png" alt="Logo B.ia Games" class="img-footer"></div>
+
+
+            <div>
+                <p class="copyright">Lorem ipsum dolor | Lorem ipsum dolor | Lorem ipsum dolor</p>
+                <p class="copyright">&copy Copyright 2019 B.IA Games</p>
+            </div>
+
+
+            <div class="icons-container">
+                <a href=""><img src="img/instagram.png" alt="logo instagram" class="icon-footer margin"></a>
+                <a href=""><img src="img/twitter.png" alt="logo twitter" class="icon-footer"></a>
+                <a href=""><img src="img/youtube.png" alt="logo youtube" class="icon-footer"></a>
+                <a href=""><img src="img/google-plus.png" alt="logo google plus" class="icon-footer"></a>
+                <a href=""><img src="img/facebook.png" alt="logo facebook"></a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
