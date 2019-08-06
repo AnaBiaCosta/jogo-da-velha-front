@@ -8,6 +8,17 @@ io.on('connection', client => {
   client.on('disconnect', () => { /* … */ });
 })
 
+io.on('connection', function(socket){
+    socket.on('chat message', function(msg){
+        io.emit('chat message', msg);
+    });
+});
+
+io.on('connection', function(socket){
+    socket.on('vencedor', function(msg){
+        io.emit('vencedor', msg);
+    });
+});
 
 server.listen(3000);
 

@@ -1,9 +1,15 @@
 const socket = io('http://localhost:3000')
+
  socket.on('connect', function(){})
  socket.on('event', function(data){})
  socket.on('disconnect', function(){})
 
+ socket.on('chat message', function(msg){console.log(msg)})
+ socket.on('vencedor', function(msg){console.log('O vencedor foi:' + msg)})
+
  
+
+
 // ENTRAR E SAIR
 function ir() {
     window.location = "game.html"
@@ -44,8 +50,6 @@ function verificar(event) {
 
     else {
         jogada++
-        socket.emit('chat message', 'Bia jogou')
-        console.log('Chegou')
 
         const imagem = (jogada % 2) ? 'jogador1' : 'jogador2'
         element.setAttribute('src', '/img/' + imagem + '.png')
@@ -54,10 +58,13 @@ function verificar(event) {
 
         if (imagem == 'jogador1') {
             div.classList.add("clicado1")
+            socket.emit('chat message', 'x');
+
         }
 
         else {
             div.classList.add("clicado2")
+            socket.emit('chat message', 'bolinha');
         }
     }
 
@@ -68,7 +75,8 @@ function verificar(event) {
 
 
 function verificarVencedor(){
-    
+    var resultado = ''
+
     if (itensGame[0].classList.contains('clicado1') && itensGame[1].classList.contains('clicado1') && itensGame[2].classList.contains('clicado1')
         || itensGame[3].classList.contains('clicado1') && itensGame[4].classList.contains('clicado1') && itensGame[5].classList.contains('clicado1')
         || itensGame[6].classList.contains('clicado1') && itensGame[7].classList.contains('clicado1') && itensGame[8].classList.contains('clicado1')
@@ -78,10 +86,10 @@ function verificarVencedor(){
         || itensGame[0].classList.contains('clicado1') && itensGame[4].classList.contains('clicado1') && itensGame[8].classList.contains('clicado1')
         || itensGame[2].classList.contains('clicado1') && itensGame[4].classList.contains('clicado1') && itensGame[6].classList.contains('clicado1')) {
 
-        var resultado = 'jogador1'
+        resultado = 'jogador1'
+        
         ganhador(resultado)
     }
-
 
     else if (itensGame[0].classList.contains('clicado2') && itensGame[1].classList.contains('clicado2') && itensGame[2].classList.contains('clicado2')
         || itensGame[3].classList.contains('clicado2') && itensGame[4].classList.contains('clicado2') && itensGame[5].classList.contains('clicado2')
@@ -92,7 +100,7 @@ function verificarVencedor(){
         || itensGame[0].classList.contains('clicado2') && itensGame[4].classList.contains('clicado2') && itensGame[8].classList.contains('clicado2')
         || itensGame[2].classList.contains('clicado2') && itensGame[4].classList.contains('clicado2') && itensGame[6].classList.contains('clicado2')) {
 
-        var resultado = 'jogador2'
+        resultado = 'jogador2'
         ganhador(resultado)
     }
 
@@ -102,7 +110,7 @@ function verificarVencedor(){
             && itensGame[3].classList.contains('clicado') && itensGame[4].classList.contains('clicado') && itensGame[5].classList.contains('clicado')
             && itensGame[6].classList.contains('clicado') && itensGame[7].classList.contains('clicado') && itensGame[8].classList.contains('clicado')) {
 
-            var resultado = 'velha'
+            resultado = 'velha'
             ganhador(resultado)
         }
     }
@@ -133,6 +141,8 @@ function ganhador(resultado) {
         img.src = '/img/emoji.png'
         g.innerText = `DEU VELHA!`
     }
+
+    socket.emit('vencedor', resultado);
 }
 
 
