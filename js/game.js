@@ -1,13 +1,26 @@
 const socket = io('http://localhost:3000')
 
- socket.on('connect', function(){})
- socket.on('event', function(data){})
- socket.on('disconnect', function(){})
+socket.on('connect', function () { })
+socket.on('event', function (data) { })
+socket.on('disconnect', function () { })
 
- socket.on('chat message', function(msg){console.log('Quem jogou foi: ' + msg)})
- socket.on('vencedor', function(msg){console.log('O vencedor foi: ' + msg)})
 
- 
+
+socket.on('chat message', function (msg) {
+    jogada++
+
+    console.log(msg)
+
+    let element = document.querySelector(`[data-index='${msg.posicao}']`)
+
+    element.setAttribute('src', '/img/' + msg.jogador + '.png')
+    element.closest('div').classList.add("clicado")
+})
+
+
+socket.on('vencedor', function (msg) { console.log('O vencedor foi: ' + msg) })
+
+
 
 
 // ENTRAR E SAIR
@@ -49,22 +62,16 @@ function verificar(event) {
     }
 
     else {
-        jogada++
-
         const imagem = (jogada % 2) ? 'jogador1' : 'jogador2'
-        element.setAttribute('src', '/img/' + imagem + '.png')
-        div.classList.add("clicado")
-
 
         if (imagem == 'jogador1') {
             div.classList.add("clicado1")
-            socket.emit('chat message', 'X');
-
+            socket.emit('chat message', { "jogador": "jogador1", "posicao": element.getAttribute('data-index') })
         }
 
         else {
             div.classList.add("clicado2")
-            socket.emit('chat message', 'O');
+            socket.emit('chat message', { "jogador": "jogador2", "posicao": element.getAttribute('data-index') });
         }
     }
 
@@ -74,7 +81,7 @@ function verificar(event) {
 
 
 
-function verificarVencedor(){
+function verificarVencedor() {
     let resultado = ''
 
     if (itensGame[0].classList.contains('clicado1') && itensGame[1].classList.contains('clicado1') && itensGame[2].classList.contains('clicado1')
@@ -87,7 +94,7 @@ function verificarVencedor(){
         || itensGame[2].classList.contains('clicado1') && itensGame[4].classList.contains('clicado1') && itensGame[6].classList.contains('clicado1')) {
 
         resultado = 'Jogador1'
-        
+
         ganhador(resultado)
     }
 
@@ -117,8 +124,6 @@ function verificarVencedor(){
 }
 
 
-
-
 const popUp = document.querySelector('.pop-up')
 const g = document.querySelector('.g')
 const img = document.querySelector('.img-pop')
@@ -133,11 +138,11 @@ function ganhador(resultado) {
         g.innerText = `JOGADOR 1 GANHOU!`
     }
 
-    else if (resultado == 'Jogador2'){
+    else if (resultado == 'Jogador2') {
         g.innerText = `JOGADOR 2 GANHOU!`
     }
-    
-    else{
+
+    else {
         img.src = '/img/emoji.png'
         g.innerText = `DEU VELHA!`
     }
