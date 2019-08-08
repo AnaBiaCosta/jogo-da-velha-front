@@ -5,24 +5,6 @@ socket.on('event', function (data) { })
 socket.on('disconnect', function () { })
 
 
-
-socket.on('chat message', function (msg) {
-    jogada++
-
-    console.log(msg)
-
-    let element = document.querySelector(`[data-index='${msg.posicao}']`)
-
-    element.setAttribute('src', '/img/' + msg.jogador + '.png')
-    element.closest('div').classList.add("clicado")
-})
-
-
-socket.on('vencedor', function (msg) { console.log('O vencedor foi: ' + msg) })
-
-
-
-
 // ENTRAR E SAIR
 function ir() {
     window.location = "game.html"
@@ -44,6 +26,26 @@ function restart() {
 
 
 
+// CONTA A JOGADA E TROCA A IMAGEM
+socket.on('chat message', function (msg) {
+    jogada++
+    console.log(jogada)
+
+    console.log(msg)
+
+    let element = document.querySelector(`[data-index='${msg.posicao}']`)
+
+    element.setAttribute('src', '/img/' + msg.jogador + '.png')
+    element.closest('span').classList.add("clicado")
+})
+
+
+socket.on('vencedor', function (msg) { console.log('O vencedor foi: ' + msg) })
+
+
+
+
+// 
 let jogada = 0
 const itensGame = document.querySelectorAll('.box-item')
 
@@ -52,17 +54,16 @@ function verificar(event) {
     const element = event.target.querySelector('img')
     const div = element.closest('.box-item')
 
-
-    if (jogada > 8) {
+    if (jogada > 7) {
         alert('O Jogo Acabou!!!!!!!!!!!')
     }
-
+    
     if (div.classList.contains("clicado")) {
         alert('Você está tentando roubar?!! Que feio......')
     }
 
     else {
-        const imagem = (jogada % 2) ? 'jogador1' : 'jogador2'
+        const imagem = (jogada % 2) ? 'jogador2' : 'jogador1'
 
         if (imagem == 'jogador1') {
             div.classList.add("clicado1")
@@ -135,11 +136,11 @@ function ganhador(resultado) {
     box.style.display = 'none'
 
     if (resultado == 'Jogador1') {
-        g.innerText = `JOGADOR 1 GANHOU!`
+        g.innerText = `JOGADOR X GANHOU!`
     }
 
     else if (resultado == 'Jogador2') {
-        g.innerText = `JOGADOR 2 GANHOU!`
+        g.innerText = `JOGADOR O GANHOU!`
     }
 
     else {
