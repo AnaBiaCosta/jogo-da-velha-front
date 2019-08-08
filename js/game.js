@@ -5,13 +5,11 @@ socket.on('event', function (data) { })
 socket.on('disconnect', function () { })
 
 
+
+
 // ENTRAR E SAIR
 function ir() {
     window.location = "game.html"
-}
-
-function sair() {
-    confirm("Tem certeza que deseja sair? Todo seu progresso será perdido")
 }
 
 
@@ -24,12 +22,11 @@ function restart() {
 
 
 
-
-
 // CONTA A JOGADA E TROCA A IMAGEM
 socket.on('chat message', function (msg) {
     jogada++
-    console.log(jogada)
+    console.log(`JOGADA : ${jogada}`)
+  
 
     console.log(msg)
 
@@ -37,15 +34,16 @@ socket.on('chat message', function (msg) {
 
     element.setAttribute('src', '/img/' + msg.jogador + '.png')
     element.closest('span').classList.add("clicado")
+
+    verificarVencedor()
 })
-
-
 socket.on('vencedor', function (msg) { console.log('O vencedor foi: ' + msg) })
 
 
 
 
-// 
+
+// VERIFICANDO A JOGADA
 let jogada = 0
 const itensGame = document.querySelectorAll('.box-item')
 
@@ -54,13 +52,15 @@ function verificar(event) {
     const element = event.target.querySelector('img')
     const div = element.closest('.box-item')
 
-    if (jogada > 7) {
-        alert('O Jogo Acabou!!!!!!!!!!!')
+
+    if (jogada >8) {
+        alert('O Jogo Acabou!!!!')
+    }
+
+    if (div.classList.contains("clicado")) {
+        alert('Você está tentando roubar?!! Que feio...')
     }
     
-    if (div.classList.contains("clicado")) {
-        alert('Você está tentando roubar?!! Que feio......')
-    }
 
     else {
         const imagem = (jogada % 2) ? 'jogador2' : 'jogador1'
@@ -75,13 +75,14 @@ function verificar(event) {
             socket.emit('chat message', { "jogador": "jogador2", "posicao": element.getAttribute('data-index') });
         }
     }
-
-    verificarVencedor()
 }
 
 
 
 
+
+
+// VERIFICANDO O GANHADOR
 function verificarVencedor() {
     let resultado = ''
 
@@ -107,11 +108,9 @@ function verificarVencedor() {
         || itensGame[2].classList.contains('clicado2') && itensGame[5].classList.contains('clicado2') && itensGame[8].classList.contains('clicado2')
         || itensGame[0].classList.contains('clicado2') && itensGame[4].classList.contains('clicado2') && itensGame[8].classList.contains('clicado2')
         || itensGame[2].classList.contains('clicado2') && itensGame[4].classList.contains('clicado2') && itensGame[6].classList.contains('clicado2')) {
-
         resultado = 'Jogador2'
         ganhador(resultado)
     }
-
 
     else {
         if (itensGame[0].classList.contains('clicado') && itensGame[1].classList.contains('clicado') && itensGame[2].classList.contains('clicado')
@@ -124,7 +123,15 @@ function verificarVencedor() {
     }
 }
 
+for (c = 0; c < 9; c++) {
+    itensGame[c].addEventListener('click', verificar)
+}
 
+
+
+
+
+// // FUNÇÃO DOS POP UP'S
 const popUp = document.querySelector('.pop-up')
 const g = document.querySelector('.g')
 const img = document.querySelector('.img-pop')
@@ -143,7 +150,7 @@ function ganhador(resultado) {
         g.innerText = `JOGADOR O GANHOU!`
     }
 
-    else {
+    else{
         img.src = '/img/emoji.png'
         g.innerText = `DEU VELHA!`
     }
@@ -152,6 +159,5 @@ function ganhador(resultado) {
 }
 
 
-for (c = 0; c < 9; c++) {
-    itensGame[c].addEventListener('click', verificar)
-}
+
+
