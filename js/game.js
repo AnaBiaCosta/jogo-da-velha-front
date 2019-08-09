@@ -1,3 +1,17 @@
+// ENTRAR E SAIR
+function ir() {
+    window.location = "game.html"
+}
+
+
+const r = document.querySelector('.restart')
+r.addEventListener('click', restart)
+
+function restart() {
+    window.location = 'game.html'
+}
+
+
 // COMEÇO DO JOGO
 const socket = io('http://localhost:3000')
 
