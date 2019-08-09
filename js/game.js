@@ -1,3 +1,4 @@
+// COMEÇO DO JOGO
 const socket = io('http://localhost:3000')
 
 socket.on('connect', function () { })
@@ -6,41 +7,8 @@ socket.on('disconnect', function () { })
 
 
 
-
-// ENTRAR E SAIR
-function ir() {
-    window.location = "game.html"
-}
-
-
-const r = document.querySelector('.restart')
-r.addEventListener('click', restart)
-
-function restart() {
-    window.location = 'game.html'
-}
-
-
-
-// CONTA A JOGADA E TROCA A IMAGEM
-socket.on('chat message', function (msg) {
-    jogada++
-    console.log(`JOGADA : ${jogada}`)
-  
-
-    console.log(msg)
-
-    let element = document.querySelector(`[data-index='${msg.posicao}']`)
-
-    element.setAttribute('src', '/img/' + msg.jogador + '.png')
-    element.closest('span').classList.add("clicado")
-
-    verificarVencedor()
-})
-socket.on('vencedor', function (msg) { console.log('O vencedor foi: ' + msg) })
-
-
-
+let bloqueado = false
+let firstPlay = false
 
 
 // VERIFICANDO A JOGADA
@@ -53,29 +21,59 @@ function verificar(event) {
     const div = element.closest('.box-item')
 
 
-    if (jogada >8) {
+
+    if (firstPlay === false) {
+        firstPlay = true
+    }
+
+
+    if (bloqueado) {
+        alert('Não é sua vez! Não tente roubar!')
+        return
+    }
+
+
+    if (jogada > 8) {
         alert('O Jogo Acabou!!!!')
     }
 
     if (div.classList.contains("clicado")) {
         alert('Você está tentando roubar?!! Que feio...')
-    }
-    
-
-    else {
+    } else {
         const imagem = (jogada % 2) ? 'jogador2' : 'jogador1'
 
         if (imagem == 'jogador1') {
             div.classList.add("clicado1")
             socket.emit('chat message', { "jogador": "jogador1", "posicao": element.getAttribute('data-index') })
-        }
-
-        else {
+        } else {
             div.classList.add("clicado2")
             socket.emit('chat message', { "jogador": "jogador2", "posicao": element.getAttribute('data-index') });
         }
     }
 }
+
+
+// CONTA A JOGADA E TROCA A IMAGEM
+socket.on('chat message', function (msg) {
+    jogada++
+    console.log("firstPlay", firstPlay)
+    console.log("bloqueado", bloqueado)
+    
+    if (firstPlay == true && bloqueado == false) {
+        bloqueado = true
+        firstPlay = null
+    } else if(firstPlay == null && bloqueado == true) {
+        bloqueado = false
+    }
+
+    console.log(msg)
+    let element = document.querySelector(`[data-index='${msg.posicao}']`)
+    element.setAttribute('src', '/img/' + msg.jogador + '.png')
+    element.closest('span').classList.add("clicado")
+
+    verificarVencedor()
+})
+socket.on('vencedor', function (msg) { console.log('O vencedor foi: ' + msg) })
 
 
 
@@ -150,7 +148,7 @@ function ganhador(resultado) {
         g.innerText = `JOGADOR O GANHOU!`
     }
 
-    else{
+    else {
         img.src = '/img/emoji.png'
         g.innerText = `DEU VELHA!`
     }
