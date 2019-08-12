@@ -1,3 +1,4 @@
+
 // ENTRAR E SAIR
 function ir() {
     window.location = "game.html"
@@ -13,13 +14,13 @@ function restart() {
 
 // COMEÇO DO JOGO
 const socket = io('http://localhost:3000')
-
 socket.on('connect', function () { })
 socket.on('event', function (data) { })
 socket.on('disconnect', function () { })
 
 
 
+// VARIÁVEIS PARA ALTERNANCIA DE JOGADORES
 let bloqueado = false
 let firstPlay = false
 
@@ -27,7 +28,6 @@ let firstPlay = false
 // VERIFICANDO A JOGADA
 let jogada = 0
 const itensGame = document.querySelectorAll('.box-item')
-
 
 function verificar(event) {
     const element = event.target.querySelector('img')
@@ -56,10 +56,10 @@ function verificar(event) {
 
         if (imagem == 'jogador1') {
             div.classList.add("clicado1")
-            socket.emit('chat message', { "jogador": "jogador1", "posicao": element.getAttribute('data-index') })
+            socket.emit('chat message', { "jogador": "1", "posicao": element.getAttribute('data-index') })
         } else {
             div.classList.add("clicado2")
-            socket.emit('chat message', { "jogador": "jogador2", "posicao": element.getAttribute('data-index') });
+            socket.emit('chat message', { "jogador": "2", "posicao": element.getAttribute('data-index') });
         }
     }
 }
@@ -78,10 +78,15 @@ socket.on('chat message', function (msg) {
         bloqueado = true
     }
 
+    
     console.log(msg)
     let element = document.querySelector(`[data-index='${msg.posicao}']`)
-    element.setAttribute('src', '/img/' + msg.jogador + '.png')
-    element.closest('span').classList.add("clicado")
+    const box = element.closest('span')
+    element.setAttribute('src', '/img/jogador' + msg.jogador + '.png')
+    // debugger
+    box.classList.add("clicado")
+    box.classList.add("clicado" + msg.jogador)
+
 
     verificarVencedor()
 })
@@ -94,6 +99,7 @@ socket.on('vencedor', function (msg) { console.log('O vencedor foi: ' + msg) })
 
 // VERIFICANDO O GANHADOR
 function verificarVencedor() {
+    console.log('')
     let resultado = ''
 
     if (itensGame[0].classList.contains('clicado1') && itensGame[1].classList.contains('clicado1') && itensGame[2].classList.contains('clicado1')
@@ -140,7 +146,7 @@ for (c = 0; c < 9; c++) {
 
 
 
-
+// ERRO AQUI - JOGADOR NÃO CHEGA AQUI
 // // FUNÇÃO DOS POP UP'S
 const popUp = document.querySelector('.pop-up')
 const g = document.querySelector('.g')

@@ -135,6 +135,12 @@ h3{
 
 
 /* POPUP */
+.pop-up-container{
+    display: flex; 
+    justify-content: center
+}
+
+
 .pop-up{
     width: 50%;
     height: 10%;
@@ -142,9 +148,11 @@ h3{
     border: 2px solid #E8707B;
     border-radius: 40px;
     background: #E8707B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     display: none;
-    margin-left: 300px;
-    /* OLHA O ERRO AI */
 }
 
 .img-pop-up{
@@ -187,4 +195,35 @@ footer{
 .icons-container{
     width: 20%;
     align-items: center; 
+}
+
+
+
+
+
+
+/* GAME */
+.mode-container{
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+}
+
+.mode-item:hover{
+    box-shadow: inset 0 0 1em #FFE2DF, 0 0 1em #E8707B;
+}
+
+.mode-item{
+    width: 25%;
+    text-align: center;
+    border: 2px solid #E8707B;
+    border-radius: 20px;
+    padding: 30px
+}
+
+
+.sub-title{
+    margin-bottom: 25px;
+    margin-top: 25px;
+    font-size: 25px
 }
