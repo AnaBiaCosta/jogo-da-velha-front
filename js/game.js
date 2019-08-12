@@ -3,7 +3,6 @@ function ir() {
     window.location = "game.html"
 }
 
-
 const r = document.querySelector('.restart')
 r.addEventListener('click', restart)
 
@@ -36,10 +35,9 @@ function verificar(event) {
 
 
 
-    if (firstPlay === false) {
+    if (firstPlay == false) {
         firstPlay = true
     }
-
 
     if (bloqueado) {
         alert('Não é sua vez! Não tente roubar!')
@@ -70,14 +68,14 @@ function verificar(event) {
 // CONTA A JOGADA E TROCA A IMAGEM
 socket.on('chat message', function (msg) {
     jogada++
-    console.log("firstPlay", firstPlay)
-    console.log("bloqueado", bloqueado)
-    
+
     if (firstPlay == true && bloqueado == false) {
         bloqueado = true
         firstPlay = null
-    } else if(firstPlay == null && bloqueado == true) {
+    } else if (firstPlay == null && bloqueado == true) {
         bloqueado = false
+    } else if (firstPlay == null && bloqueado == false) {
+        bloqueado = true
     }
 
     console.log(msg)
